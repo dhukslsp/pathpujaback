@@ -2,28 +2,22 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const PujaSchema = new Schema({
     name:{
-        type: String,
-        required: true
+        type: String
     },
     Desc:{
-        type: String,
-        required: true,
+        type: String
     },
     Benifit1:{
-        type: String,
-        required: true
+        type: String
     },
     Benifit2:{
-        type: String,
-        required: true
+        type: String
     },
     Benifit3:{
-        type: String,
-        required: true
+        type: String
     },
     Benifit4:{
-        type: String,
-        required: true
+        type: String
     },
     Basic:[{Subpuja: String,hours: String,Pandit: String,Prices: String,FullPayment: String,AdvancePayment: String}],
     Regular:[{Subpuja: String,hours: String,Pandit: String,Prices: String,FullPayment: String,AdvancePayment: String}],

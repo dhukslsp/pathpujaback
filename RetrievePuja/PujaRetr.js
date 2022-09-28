@@ -11,4 +11,3 @@ router.get('/myroute1/:puja',async(req,res)=>{
     }
 })
 module.exports = router;
-
