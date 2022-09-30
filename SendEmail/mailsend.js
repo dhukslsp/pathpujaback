@@ -4,12 +4,12 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 const handle = require("nodemailer-express-handlebars");
 
-router.post("/send_email", (req, res) => {
+router.post("/send_email", async(req, res) => {
     var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: "dhruv1647.singh@gmail.com",
-            pass: "ohtqlmxwhpeebguy"
+            user: "pathpuja.com@gmail.com",
+            pass: "cusmislepyatibhb"
         }
     });
     transporter.use('compile', handle({
@@ -23,17 +23,17 @@ router.post("/send_email", (req, res) => {
 
     }));
     var mailoperations = {
-        from: "dhruv1647.singh@gmail.com",
-        to: "pathpuja.com@gmail.com",
+        from: "pathpuja.com@gmail.com",
+        to: req.body.CusGmail,
         subject: "Regarding Puja Booking with Pathpuja",
         template: "main",
         context: {
-            CusfName: req.body.fname,
-            CuslName: req.body.lname,
-            Puja_Name: req.body.Pujaname,
+            CusfName: req.body.CusfName,
+            CuslName: req.body.CuslName,
+            Puja_Name: req.body.pujaname,
             packageName: req.body.packageName,
             hours: req.body.hours,
-            prices: req.body.prices
+            prices: req.body.pices*20/100
         }
     }
     transporter.sendMail(mailoperations, (err) => {
