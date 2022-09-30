@@ -1,12 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    p {
+        margin: 4px;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
 <body>
-    <h1>{{title}}</h1>
+    <h3>Namaste {{CusfName}} {{CuslName}}</h3>
+    <p>Dear Customer,</p>
+    <p>Greetings from Pathpuja,</p>
+    <p>The details and the prices of the puja as selected by you are mentioned below. We request you to go through the
+        details for the same.</p>
+    <table style="height:11pc; margin-top: 2pc;width: 38pc;">
+        <tr>
+            <th>Puja</th>
+            <th>{{Puja_Name}}</th>
+        </tr>
+        <tr>
+            <td>Package Selected</td>
+            <td>{{packageName}}</td>
+        </tr>
+        <tr>
+            <td>Time Duration</td>
+            <td>{{hours}}</td>
+        </tr>
+        <tr>
+            <td>Amount (20%)</td>
+            <td> {{prices}}</td>
+        </tr>
+    </table>
+    <p>The Link for the payment has been attached below in the mail. Only, after making the required payment (as
+        mentioned above your booking would be confirmed.</p>
+    <ul>
+        Note:
+        <li>
+            <p>The payment process is authentic and the name Saksham Agrawal shall be shown on your device screens while
+                making
+                the payment.</p>
+        </li>
+        <li>
+            <p> You are paying 20% of the total amount as of now, the remaining amount will be paid after completing
+                your
+                prosperous puja.</p>
+        </li>
+    </ul>
+
+
+    <p style="margin-top: 1pc;">Link:-  https://paytm.me/GS-So1r</p>
+    <p style="margin-top: 2pc;">Regards</p>
+    <p>Team Pathpuja</p>
+
 </body>
+
 </html>
