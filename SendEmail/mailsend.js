@@ -32,8 +32,13 @@ router.post("/send_email", async(req, res) => {
             CuslName: req.body.CuslName,
             Puja_Name: req.body.pujaname,
             packageName: req.body.packageName,
-            hours: req.body.hours,
-            prices: req.body.pices*20/100
+            pujaDate: req.body.PujaEventDate,
+            hours: req.body.PujaEventTime,
+            prices: req.body.pices*20/100,
+            CusAdress:req.body.CusAdress,
+            Cuscity:req.body.Cuscity,
+            CusState:req.body.CusState,
+            CusPinCode: req.body.CusPinCode
         }
     }
     transporter.sendMail(mailoperations, (err) => {
@@ -63,7 +68,7 @@ router.post("/send_email1", async(req, res) => {
     }));
     var mailoperations = {
         from: "pathpuja.com@gmail.com",
-        to: "pathpuja.com@gmail.com",
+        to: req.body.CusGmail,
         subject: "Congratulations!! Booking Confirmed.",
         template: "CustumerConfirm",
         context: {
