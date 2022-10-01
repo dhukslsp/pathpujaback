@@ -9,4 +9,13 @@ router.get('/myroute1/fetchdetcUst',async(req,res)=>{
         console.error(error);
     }
 })
+router.post('/myroute1/fetchdetcUst/:id',async(req,res)=>{
+    const id = req.params.id
+    try {
+        const Custdet = await CustdetSacema.find({_id :id});
+        res.json(Custdet);
+    } catch (error) {
+        console.error(error);
+    }
+})
 module.exports = router;
