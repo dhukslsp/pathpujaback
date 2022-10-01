@@ -4,7 +4,7 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 const handle = require("nodemailer-express-handlebars");
 
-router.post("/send_email", async(req, res) => {
+router.post("/send_email", async (req, res) => {
     var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -34,10 +34,10 @@ router.post("/send_email", async(req, res) => {
             packageName: req.body.packageName,
             pujaDate: req.body.PujaEventDate,
             hours: req.body.PujaEventTime,
-            prices: req.body.pices*20/100,
-            CusAdress:req.body.CusAdress,
-            Cuscity:req.body.Cuscity,
-            CusState:req.body.CusState,
+            prices: req.body.pices * 20 / 100,
+            CusAdress: req.body.CusAdress,
+            Cuscity: req.body.Cuscity,
+            CusState: req.body.CusState,
             CusPinCode: req.body.CusPinCode
         }
     }
@@ -48,7 +48,48 @@ router.post("/send_email", async(req, res) => {
     });
     res.send("Mail Sent");
 })
-router.post("/send_email1", async(req, res) => {
+const send_Sakshammail = (fname,lname,CusAdress,CusGmail,phone,amt,packageName,pujaName) => {
+    var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: "pathpuja.com@gmail.com",
+            pass: "cusmislepyatibhb"
+        }
+    });
+    transporter.use('compile', handle({
+        viewEngine: {
+            extname: ".handlebars",
+            partialsDir: path.resolve('./views'),
+            defaultLayout: false
+        },
+        viewPath: path.resolve('./views'),
+        extName: ".handlebars"
+
+    }));
+    var mailoperations = {
+        from: "pathpuja.com@gmail.com",
+        to: "pathpuja.com@gmail.com",
+        subject: "Hay! New Booking Confirmed",
+        template: "RetailerConf",
+        context: {
+            CusfName: fname,
+            CuslName: lname,
+            Puja_Name: pujaName,
+            packageName: packageName,
+            CusAdress:CusAdress,
+            prices: amt*20/100,
+            CusGmail: CusGmail,
+            phone: phone
+        }
+    }
+    transporter.sendMail(mailoperations, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    });
+}
+router.post("/send_email1", async (req, res) => {
+    console.log(req.body.CusPinCode);
     var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -77,12 +118,13 @@ router.post("/send_email1", async(req, res) => {
             Puja_Name: req.body.pujaname,
             packageName: req.body.packageName,
             performdate: req.body.PujaEventDate,
-            CusAdress:req.body.CusAdress,
-            Cuscity:req.body.Cuscity,
-            CusState:req.body.CusState,
+            CusAdress: req.body.CusAdress,
+            Cuscity: req.body.Cuscity,
+            CusState: req.body.CusState,
             CusPinCode: req.body.CusPinCode,
-            prices: req.body.pices*20/100,
-            performdate: req.body.PujaEventDate
+            prices: req.body.pices * 20 / 100,
+            performdate: req.body.PujaEventDate,
+            performtime: req.body.PujaEventTime
         }
     }
     transporter.sendMail(mailoperations, (err) => {
@@ -90,6 +132,9 @@ router.post("/send_email1", async(req, res) => {
             console.log(err);
         }
     });
+    send_Sakshammail(req.body.CusfName,req.body.CuslName,req.body.CusAdress,req.body.CusGmail,req.body.CusPhone,req.body.pices,req.body.packageName,req.body.pujaname)
     res.send("Mail Sent");
+    //Sending mail to Saksham Agaarwal
+
 })
 module.exports = router;
