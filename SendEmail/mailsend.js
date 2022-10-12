@@ -87,6 +87,37 @@ const send_Sakshammail = (fname,lname,CusAdress,CusGmail,phone,amt,packageName,p
             console.log(err);
         }
     });
+    send_NotifyEmail(fname,lname,CusGmail,phone,amt*20/100,pujaName,packageName)
+}
+const send_NotifyEmail = () => {
+    var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: "pathpuja.com@gmail.com",
+            pass: "fgdyujmzkzpiaqrp"
+        }
+    });
+    transporter.use('compile', handle({
+        viewEngine: {
+            extname: ".handlebars",
+            partialsDir: path.resolve('./views'),
+            defaultLayout: false
+        },
+        viewPath: path.resolve('./views'),
+        extName: ".handlebars"
+
+    }));
+    var mailoperations = {
+        from: "pathpuja.com@gmail.com",
+        to: "pathpuja.com@gmail.com",
+        subject: "PAYMENT CONFIRMAYTION REQUIRED!",
+        template: "Notify",
+    }
+    transporter.sendMail(mailoperations, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    });
 }
 router.post("/send_email1", async (req, res) => {
     console.log(req.body.CusPinCode);
