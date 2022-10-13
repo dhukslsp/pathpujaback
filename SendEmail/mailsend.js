@@ -9,7 +9,7 @@ router.post("/send_email", async (req, res) => {
         service: "gmail",
         auth: {
             user: "pathpuja.com@gmail.com",
-            pass: "fgdyujmzkzpiaqrp"
+            pass: "segnrjteqkjhakxz"
         }
     });
     transporter.use('compile', handle({
@@ -53,7 +53,7 @@ const send_Sakshammail = (fname,lname,CusAdress,CusGmail,phone,amt,packageName,p
         service: "gmail",
         auth: {
             user: "pathpuja.com@gmail.com",
-            pass: "fgdyujmzkzpiaqrp"
+            pass: "segnrjteqkjhakxz"
         }
     });
     transporter.use('compile', handle({
@@ -94,7 +94,7 @@ const send_NotifyEmail = () => {
         service: "gmail",
         auth: {
             user: "pathpuja.com@gmail.com",
-            pass: "fgdyujmzkzpiaqrp"
+            pass: "segnrjteqkjhakxz"
         }
     });
     transporter.use('compile', handle({
@@ -125,7 +125,7 @@ router.post("/send_email1", async (req, res) => {
         service: "gmail",
         auth: {
             user: "pathpuja.com@gmail.com",
-            pass: "fgdyujmzkzpiaqrp"
+            pass: "segnrjteqkjhakxz"
         }
     });
     transporter.use('compile', handle({
