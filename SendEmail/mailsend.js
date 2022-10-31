@@ -48,7 +48,7 @@ router.post("/send_email", async (req, res) => {
     });
     res.send("Mail Sent");
 })
-const send_Sakshammail = (fname,lname,CusAdress,CusGmail,phone,amt,packageName,pujaName) => {
+const send_Sakshammail = (fname,lname,CusAdress,CusGmail,phone,amt,packageName,pujaName,PujaEventDate,PujaEventTime) => {
     var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -79,7 +79,9 @@ const send_Sakshammail = (fname,lname,CusAdress,CusGmail,phone,amt,packageName,p
             CusAdress:CusAdress,
             prices: amt*20/100,
             CusGmail: CusGmail,
-            phone: phone
+            phone: phone,
+            pujaDate: PujaEventDate,
+            PujaEventTime: PujaEventTime
         }
     }
     transporter.sendMail(mailoperations, (err) => {
@@ -163,7 +165,7 @@ router.post("/send_email1", async (req, res) => {
             console.log(err);
         }
     });
-    send_Sakshammail(req.body.CusfName,req.body.CuslName,req.body.CusAdress,req.body.CusGmail,req.body.CusPhone,req.body.pices,req.body.packageName,req.body.pujaname)
+    send_Sakshammail(req.body.CusfName,req.body.CuslName,req.body.CusAdress,req.body.CusGmail,req.body.CusPhone,req.body.pices,req.body.packageName,req.body.pujaname,req.body.PujaEventDate,req.body.PujaEventTime)
     res.send("Mail Sent");
     //Sending mail to Saksham Agaarwal
 
